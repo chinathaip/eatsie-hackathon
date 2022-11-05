@@ -4,7 +4,7 @@ import com.stamford.hackathon.R
 import com.stamford.hackathon.core.ItemViewHolder
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.databinding.ViewHolderItemListingBinding
-import com.stamford.hackathon.ui.main.OnItemListingClick
+import com.stamford.hackathon.core.OnItemListingClick
 
 class ItemListingViewHolder(
     private val binding: ViewHolderItemListingBinding,

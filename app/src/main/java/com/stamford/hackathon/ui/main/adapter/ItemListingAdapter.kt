@@ -5,15 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.stamford.hackathon.core.ItemViewHolder
+import com.stamford.hackathon.core.OnCategoryClick
+import com.stamford.hackathon.core.OnItemListingClick
 import com.stamford.hackathon.core.model.ui.ItemListingType
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
+import com.stamford.hackathon.databinding.ViewHolderCategoryContainerBinding
 import com.stamford.hackathon.databinding.ViewHolderHeaderBinding
 import com.stamford.hackathon.databinding.ViewHolderItemListingBinding
-import com.stamford.hackathon.ui.main.OnItemListingClick
+import com.stamford.hackathon.ui.main.viewholder.CategoryContainerViewHolder
 import com.stamford.hackathon.ui.main.viewholder.HeaderViewHolder
 import com.stamford.hackathon.ui.main.viewholder.ItemListingViewHolder
 
-class ItemListingAdapter(private val onItemClickListener: OnItemListingClick) :
+class ItemListingAdapter(
+    private val onItemClickListener: OnItemListingClick,
+    private val onCategoryClickListener: OnCategoryClick
+) :
     ListAdapter<ItemListingUiModel, ItemViewHolder<*>>(DiffCallBack()) {
 
     override fun getItemViewType(position: Int): Int = getItem(position).type
@@ -26,6 +32,12 @@ class ItemListingAdapter(private val onItemClickListener: OnItemListingClick) :
                     parent,
                     false
                 ), onItemClickListener
+            )
+            ItemListingType.TYPE_CATEGORY -> CategoryContainerViewHolder(
+                ViewHolderCategoryContainerBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent, false
+                ), onCategoryClickListener
             )
             else -> HeaderViewHolder(
                 ViewHolderHeaderBinding.inflate(
@@ -47,7 +59,9 @@ class ItemListingAdapter(private val onItemClickListener: OnItemListingClick) :
             newItem: ItemListingUiModel
         ): Boolean {
             return when {
+                oldItem is ItemListingUiModel.GroupHeader && newItem is ItemListingUiModel.GroupHeader -> oldItem.name == newItem.name
                 oldItem is ItemListingUiModel.ItemUiModel && newItem is ItemListingUiModel.ItemUiModel -> oldItem.title == newItem.title
+                oldItem is ItemListingUiModel.ListOfCategory && newItem is ItemListingUiModel.ListOfCategory -> oldItem.categories.size == newItem.categories.size
                 else -> false
             }
         }
@@ -57,7 +71,9 @@ class ItemListingAdapter(private val onItemClickListener: OnItemListingClick) :
             newItem: ItemListingUiModel
         ): Boolean {
             return when {
+                oldItem is ItemListingUiModel.GroupHeader && newItem is ItemListingUiModel.GroupHeader -> oldItem == newItem
                 oldItem is ItemListingUiModel.ItemUiModel && newItem is ItemListingUiModel.ItemUiModel -> oldItem == newItem
+                oldItem is ItemListingUiModel.ListOfCategory && newItem is ItemListingUiModel.ListOfCategory -> oldItem == newItem
                 else -> false
             }
         }

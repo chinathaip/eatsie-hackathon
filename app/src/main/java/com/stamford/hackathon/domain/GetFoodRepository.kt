@@ -6,4 +6,6 @@ import retrofit2.Response
 interface GetFoodRepository {
 
     suspend fun getListing(): Response<ItemListing>
+
+    suspend fun getSortedListing(type: String): Response<ItemListing>
 }

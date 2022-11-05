@@ -9,4 +9,8 @@ class GetFoodRepositoryImpl(private val dataSource: FoodDataSource) : GetFoodRep
     override suspend fun getListing(): Response<ItemListing> {
         return dataSource.getListing()
     }
+
+    override suspend fun getSortedListing(type: String): Response<ItemListing> {
+        return dataSource.getSortedListing(type)
+    }
 }
