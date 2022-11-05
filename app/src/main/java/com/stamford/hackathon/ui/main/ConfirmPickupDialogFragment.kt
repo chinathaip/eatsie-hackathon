@@ -33,7 +33,7 @@ class ConfirmPickupDialogFragment(private val data: ItemListingUiModel.ItemUiMod
             confirmItemNameTextView.text = data.title
             confirmItemDescriptionTextView.text = data.description
             confirmItemPriceTextView.text = data.price
-            confirmItemStatusTextView.text = "Available"
+            confirmItemStatusTextView.text = data.status
         }
     }
 

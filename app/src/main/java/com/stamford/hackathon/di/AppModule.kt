@@ -17,7 +17,7 @@ val appModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("https://api.coinranking.com/v2/")//to be changed
+            .baseUrl("https://eatsie.vercel.app/api/")//to be changed
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(FoodDataSource::class.java)
