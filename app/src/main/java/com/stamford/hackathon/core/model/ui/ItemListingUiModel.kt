@@ -3,6 +3,7 @@ package com.stamford.hackathon.core.model.ui
 sealed class ItemListingUiModel(val type: Int) {
 
     data class ItemUiModel(
+        val itemId: String,
         val title: String,
         val description: String,
         val boughtTime: String,
