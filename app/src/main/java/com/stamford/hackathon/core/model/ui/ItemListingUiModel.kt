@@ -1,5 +1,7 @@
 package com.stamford.hackathon.core.model.ui
 
+import com.stamford.hackathon.core.Const
+
 sealed class ItemListingUiModel(val type: Int) {
 
     data class ItemUiModel(
@@ -12,7 +14,8 @@ sealed class ItemListingUiModel(val type: Int) {
         val amount: String,
         val weight: String,
         val status: String,
-        val category: String
+        val category: String,
+        val imageUrl: String
     ) : ItemListingUiModel(ItemListingType.TYPE_ITEM)
 
     data class GroupHeader(val name: String) : ItemListingUiModel(ItemListingType.TYPE_HEADER)
@@ -26,11 +29,11 @@ sealed class ItemListingUiModel(val type: Int) {
         fun createCategories(): ListOfCategory {
             return ListOfCategory(
                 listOf(
-                    Category("Diaries", "a"),
-                    Category("Fruits", "b"),
-                    Category("Vegetables", "c"),
-                    Category("Meat", "d"),
-                    Category("All", "")
+                    Category("All", Const.CATEGORY_ALL),
+                    Category("Dairies", Const.CATEGORY_DAIRIES),
+                    Category("Fruits", Const.CATEGORY_FRUITS),
+                    Category("Vegetables", Const.CATEGORY_VEGETABLE),
+                    Category("Meat", Const.CATEGORY_MEAT)
                 )
             )
         }

@@ -19,6 +19,12 @@ interface FoodDataSource{
         type: String
     ) : Response<ItemListing>
 
+    @GET("listings/get_status")
+    suspend fun getListingByStatusUseCase(
+        @Query("status")
+        status: String
+    ) : Response<ItemListing>
+
     @PUT("listings/user_confirm")
     suspend fun confirmPickup(
         @Body

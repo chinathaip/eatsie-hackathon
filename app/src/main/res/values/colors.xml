@@ -7,4 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="background">#FCECD5</color>
+    <color name="background_variant">#FDF6EB</color>\
+    <color name="button_color">#EB9A9A</color>
+    <color name="bottomnav_color">#FEB8B8</color>
+    <color name="dialog_background">#F5B8B8</color>
+    <color name="item_listing_color">#F5F3EC</color>
+
+    <color name="yellow">#EDDBC0</color>
+    <color name="brown">#3C1D07</color>
+
+
 </resources>

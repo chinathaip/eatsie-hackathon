@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import coil.api.load
 import com.stamford.hackathon.R
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.databinding.DialogFragmentConfirmPickupBinding
@@ -35,6 +36,9 @@ class ConfirmPickupDialogFragment(private val data: ItemListingUiModel.ItemUiMod
             confirmItemDescriptionTextView.text = data.description
             confirmItemPriceTextView.text = data.price
             confirmItemStatusTextView.text = data.status
+            confirmItemImageView.load(data.imageUrl) {
+                error(R.drawable.placeholder_image)
+            }
         }
     }
 
