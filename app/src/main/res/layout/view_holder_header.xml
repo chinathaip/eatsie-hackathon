@@ -9,7 +9,7 @@
         style="@style/BaseTheme.Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_4dp"
-        tools:text="See all the items from nearby restaurants" />
+        android:padding="@dimen/space_16dp"
+        tools:text="Items from nearby restaurants" />
 
 </LinearLayout>

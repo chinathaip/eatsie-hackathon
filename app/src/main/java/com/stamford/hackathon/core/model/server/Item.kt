@@ -8,6 +8,7 @@ data class Item(
     val description: String? = null,
     val category: Int? = null,
     val amount: Int? = null,
+    val price: Double? = null,
     val weightPerPortion: Float? = null,
     val status: Int? = null,
     val imageUrl: String? = null,

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">hackathon</string>
     <string name="welcome">Welcome, Khing</string>
+    <string name="confirm">Confirm</string>
+    <string name="alert_dialog_title">Do you confirm to go pick-up this item?</string>
+    <string name="alert_dialog_yes">Yes</string>
+    <string name="alert_dialog_no">No, take me back</string>
 </resources>

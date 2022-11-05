@@ -6,6 +6,7 @@ sealed class ItemListingUiModel(val type: Int) {
         val title: String,
         val description: String,
         val expiredTime: String,
+        val price: String,
         val amount: Int,
         val status: Int,
         val category: Int
