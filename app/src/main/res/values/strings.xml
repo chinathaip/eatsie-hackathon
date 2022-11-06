@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">hackathon</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="not_on_board_yet_join_now">Not on board yet? <b><u><span style="color:#c04d4c">Join now</span></u></b></string>
 </resources>
