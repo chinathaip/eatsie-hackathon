@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.stamford.hackathon.core.Const
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.domain.ClientPickupConfirmUseCase
 import com.stamford.hackathon.domain.GetListingUseCase
@@ -63,7 +64,7 @@ class MainViewModel(
                 }
                 newItemListings.add(ItemListingUiModel.GroupHeader("Items from nearby restaurants"))
                 newItemListings.addAll(response.getOrNull()?.items?.mapNotNull {
-                    ItemToItemListingUiModelMapper.map(it)
+                    ItemToItemListingUiModelMapper.map(it, Const.STATUS_AVAILABLE)
                 } ?: emptyList())
                 _itemListing.value = newItemListings
             } catch (exception: Exception) {
@@ -87,7 +88,7 @@ class MainViewModel(
                 }
                 newItemListings.add(ItemListingUiModel.GroupHeader("Items from nearby restaurants"))
                 newItemListings.addAll(response.getOrNull()?.items?.mapNotNull {
-                    ItemToItemListingUiModelMapper.map(it)
+                    ItemToItemListingUiModelMapper.map(it, Const.STATUS_AVAILABLE)
                 } ?: emptyList())
 
                 _itemListing.value = newItemListings

@@ -7,6 +7,8 @@
     <string name="alert_dialog_no">No, take me back</string>
     <string name="item_bought_date">Bought Date: %s</string>
     <string name="item_expired_date">Expired Date: %s</string>
-    <string name="item_name_title">%s (%sg)</string>
+    <string name="item_name_title">%s (%s%s)</string>
     <string name="item_quantity">Left: %s</string>
+    <string name="profile_pending_order">Waiting for restaurant\'s confirmation</string>
+    <string name="item_order_status">Status: %s</string>
 </resources>

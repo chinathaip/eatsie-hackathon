@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.api.load
 import com.google.android.material.snackbar.Snackbar
+import com.stamford.hackathon.R
 import com.stamford.hackathon.core.OnCategoryClick
 import com.stamford.hackathon.core.OnItemListingClick
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
@@ -55,6 +57,9 @@ class MainFragment : Fragment() {
                 viewModel.confirmPickup(itemId)
             }
         }
+        binding.highlightImageView.load(
+            "https://media.discordapp.net/attachments/1028047367909425333/1038740748746621010/unknown.png?width=647&height=426"
+        )
     }
 
     private fun observeViewModel() {

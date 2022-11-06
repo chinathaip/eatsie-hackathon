@@ -21,9 +21,9 @@
             <ImageView
                 android:id="@+id/itemImageView"
                 android:layout_width="150dp"
-                android:layout_height="120dp"
-                android:src="@drawable/ic_launcher_background"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,50 +42,29 @@
                 tools:text="TenderLoin (200g)" />
 
             <TextView
-                android:id="@+id/itemBoughtDateTextView"
-                style="@style/BaseTheme.Normal.10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/space_16dp"
-                android:layout_marginVertical="@dimen/space_4dp"
-                android:text="@string/item_bought_date"
-                app:layout_constraintStart_toEndOf="@id/itemImageView"
-                app:layout_constraintTop_toBottomOf="@id/itemNameTextView"
-                tools:text="Bought Date: 29/09/2022" />
-
-            <TextView
-                android:id="@+id/itemExpiredDateTextView"
-                style="@style/BaseTheme.Normal.10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/space_16dp"
-                android:layout_marginVertical="@dimen/space_4dp"
-                android:text="@string/item_expired_date"
-                app:layout_constraintStart_toEndOf="@id/itemImageView"
-                app:layout_constraintTop_toBottomOf="@id/itemBoughtDateTextView"
-                tools:text="Expired Date: 29/09/2022" />
-
-            <TextView
                 android:id="@+id/itemPriceTextView"
                 style="@style/BaseTheme.Normal.10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_16dp"
                 app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/itemImageView"
+                app:layout_constraintTop_toBottomOf="@id/itemNameTextView"
                 tools:text="$100" />
 
             <TextView
-                android:id="@+id/itemQuantityTextView"
+                android:id="@+id/itemStatusTextView"
                 style="@style/BaseTheme.Normal.10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_16dp"
-                android:text="@string/item_quantity"
+                android:text="@string/item_order_status"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Left: 20" />
+                app:layout_constraintStart_toEndOf="@id/itemImageView"
+                app:layout_constraintTop_toBottomOf="@id/itemPriceTextView"
+                tools:text="Status: restaurant_pending" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

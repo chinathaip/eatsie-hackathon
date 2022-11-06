@@ -7,9 +7,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/categoryCardView"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="@dimen/space_8dp"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="@dimen/space_12dp"
         android:clickable="true"
         android:focusable="true"
         android:padding="@dimen/space_4dp"
@@ -19,7 +19,9 @@
             android:id="@+id/categoryNameTextView"
             style="@style/BaseTheme.Header"
             android:layout_width="match_parent"
+            android:background="@color/button_color"
             android:layout_height="match_parent"
+            android:textColor="@color/brown"
             android:gravity="center"
             tools:text="Diaries" />
     </androidx.cardview.widget.CardView>

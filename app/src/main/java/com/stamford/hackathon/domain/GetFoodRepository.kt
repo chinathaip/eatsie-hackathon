@@ -9,5 +9,7 @@ interface GetFoodRepository {
 
     suspend fun getSortedListing(type: String): Response<ItemListing>
 
+    suspend fun getListingByStatus(status: String): Response<ItemListing>
+
     suspend fun confirmPickup(body: Map<String, String>): Response<Any?>
 }

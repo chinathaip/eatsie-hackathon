@@ -5,8 +5,8 @@ import com.stamford.hackathon.core.model.server.Data
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 
 object ItemToItemListingUiModelMapper {
-    fun map(data: Data): ItemListingUiModel.ItemUiModel? {
-        return if (data.status.equals("available"))
+    fun map(data: Data, status: String): ItemListingUiModel.ItemUiModel? {
+        return if (data.status.equals(status))
             ItemListingUiModel.ItemUiModel(
                 data._id ?: "",
                 data.title ?: "",
@@ -17,7 +17,8 @@ object ItemToItemListingUiModelMapper {
                 data.amount?.toString() ?: "",
                 data.weight?.toString() ?: "",
                 data.status ?: Const.STATUS_AVAILABLE,
-                data.category ?: Const.CATEGORY_DIARIES
+                data.category ?: Const.CATEGORY_DAIRIES,
+                data.imageUrl ?: ""
             ) else null
     }
 

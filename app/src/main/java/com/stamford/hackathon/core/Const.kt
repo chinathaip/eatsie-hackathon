@@ -3,14 +3,17 @@ package com.stamford.hackathon.core
 object Const {
 
     //item category
-    const val CATEGORY_VEGETABLE = "vegetables"
-    const val CATEGORY_MEAT = "meat"
-    const val CATEGORY_RICE_PASTA = "rice-pasta"
-    const val CATEGORY_FRUITS = "fruits"
-    const val CATEGORY_DIARIES = "diaries"
+    const val CATEGORY_ALL = ""
+    const val CATEGORY_DAIRIES = "a"
+    const val CATEGORY_FRUITS = "b"
+    const val CATEGORY_VEGETABLE = "c"
+    const val CATEGORY_MEAT = "d"
+
+
 
     //item status
     const val STATUS_AVAILABLE = "available"
+    const val STATUS_RESTAURANT_PENDING = "restaurant_pending"
     const val STATUS_PENDING = "pending"
     const val STATUS_COMPLETED = "completed"
 }
