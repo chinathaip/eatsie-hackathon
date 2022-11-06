@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.stamford.hackathon.core.OnCategoryClick
 import com.stamford.hackathon.core.OnItemListingClick
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
@@ -18,6 +19,7 @@ class MainFragment : Fragment() {
 
     companion object {
         const val REQUEST_KEY = "request-get-confirm-result"
+        const val RESULT_BUNDLE_KEY = "bundle-itemId"
         const val LOADING_VIEW = 0
         const val CONTENT_VIEW = 1
     }
@@ -49,9 +51,9 @@ class MainFragment : Fragment() {
         requireActivity().supportFragmentManager.setFragmentResultListener(
             REQUEST_KEY, viewLifecycleOwner
         ) { _, bundle ->
-            //to be replaced with calling API
-            val result = bundle.getString("test")
-            Log.d("LOL", "dialog fragment result = $result")
+            bundle.getString(RESULT_BUNDLE_KEY)?.let { itemId ->
+                viewModel.confirmPickup(itemId)
+            }
         }
     }
 
@@ -62,10 +64,16 @@ class MainFragment : Fragment() {
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.root.displayedChild = if (isLoading) LOADING_VIEW else CONTENT_VIEW
         }
+        viewModel.confirmPickUpSuccessEvent.observe(viewLifecycleOwner) {
+            Snackbar.make(
+                binding.root,
+                "Done! Now please wait for the restaurant to acknowledge!",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
         viewModel.retrievedDataFailedEvent.observe(viewLifecycleOwner) {
             Log.d("LOL", it)
         }
-
     }
 
     inner class OnItemClickListener : OnItemListingClick {

@@ -3,6 +3,7 @@ package com.stamford.hackathon.di
 
 import com.stamford.hackathon.data.FoodDataSource
 import com.stamford.hackathon.data.GetFoodRepositoryImpl
+import com.stamford.hackathon.domain.ClientPickupConfirmUseCase
 import com.stamford.hackathon.domain.GetFoodRepository
 import com.stamford.hackathon.domain.GetListingUseCase
 import com.stamford.hackathon.domain.GetSortedListingUseCase
@@ -14,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
 
-    viewModel { MainViewModel(get(), get()) }
+    viewModel { MainViewModel(get(), get(), get()) }
 
     single {
         Retrofit.Builder()
@@ -24,10 +25,11 @@ val appModule = module {
             .create(FoodDataSource::class.java)
     }
 
+    single<GetFoodRepository> { GetFoodRepositoryImpl(get()) }
+
     factory { GetListingUseCase(get()) }
 
     factory { GetSortedListingUseCase(get()) }
 
-    single<GetFoodRepository> { GetFoodRepositoryImpl(get()) }
-
+    factory { ClientPickupConfirmUseCase(get()) }
 }

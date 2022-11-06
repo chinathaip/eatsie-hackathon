@@ -13,4 +13,8 @@ class GetFoodRepositoryImpl(private val dataSource: FoodDataSource) : GetFoodRep
     override suspend fun getSortedListing(type: String): Response<ItemListing> {
         return dataSource.getSortedListing(type)
     }
+
+    override suspend fun confirmPickup(body: Map<String, String>): Response<Any?> {
+        return dataSource.confirmPickup(body)
+    }
 }
