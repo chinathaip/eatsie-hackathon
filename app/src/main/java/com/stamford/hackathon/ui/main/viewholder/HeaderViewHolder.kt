@@ -1,7 +1,14 @@
 package com.stamford.hackathon.ui.main.viewholder
 
-import androidx.recyclerview.widget.RecyclerView
+import com.stamford.hackathon.core.ItemViewHolder
+import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.databinding.ViewHolderHeaderBinding
 
-class HeaderViewHolder(binding: ViewHolderHeaderBinding) : RecyclerView.ViewHolder(binding.root) {
+class HeaderViewHolder(private val binding: ViewHolderHeaderBinding) :
+    ItemViewHolder<ItemListingUiModel.GroupHeader>(binding.root) {
+
+    override fun fillData(data: ItemListingUiModel.GroupHeader, position: Int) {
+        binding.gruopHeaderTextView.text = data.name
+    }
+
 }

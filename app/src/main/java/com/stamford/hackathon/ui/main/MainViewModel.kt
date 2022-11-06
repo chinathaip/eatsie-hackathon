@@ -1,28 +1,46 @@
 package com.stamford.hackathon.ui.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.stamford.hackathon.data.model.Coins
+import com.stamford.hackathon.core.model.server.Item
+import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.domain.GetFoodUseCase
+import com.stamford.hackathon.ui.main.mapper.ItemToItemListingUiModelMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainViewModel(private val getFoodUseCase: GetFoodUseCase) : ViewModel() {
 
-    val food = MutableLiveData<Coins>()
+    private val _itemListing = MutableLiveData<List<ItemListingUiModel>>()
+    val itemListing: LiveData<List<ItemListingUiModel>> = _itemListing
+
+
+    private val _retrievedDataFailedEvent = MutableLiveData<String>()
+    val retrievedDataFailedEvent: LiveData<String> = _retrievedDataFailedEvent
 
     init {
-        getFood()
+        getListing()
     }
 
-    fun getFood() {
+    private fun getListing() {
         viewModelScope.launch {
-            val response = withContext(Dispatchers.IO) {
-                getFoodUseCase.invoke()
+            try {
+                val newItemListings = mutableListOf<ItemListingUiModel>()
+                val response = withContext(Dispatchers.IO) {
+                    getFoodUseCase.invoke()
+                }
+                newItemListings.add(ItemListingUiModel.GroupHeader("Items from nearby restaurants"))
+                newItemListings.addAll(response.getOrNull()?.items?.map {
+                    ItemToItemListingUiModelMapper.map(it)
+                } ?: emptyList())
+
+                _itemListing.value = newItemListings
+            } catch (exception: Exception) {
+                _retrievedDataFailedEvent.value = exception.message
             }
-            food.value = response
         }
     }
 }
