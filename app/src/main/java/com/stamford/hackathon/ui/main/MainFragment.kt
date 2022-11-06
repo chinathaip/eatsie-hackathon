@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.stamford.hackathon.core.OnCategoryClick
+import com.stamford.hackathon.core.OnItemListingClick
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.databinding.FragmentMainBinding
 import com.stamford.hackathon.ui.main.adapter.ItemListingAdapter
@@ -16,11 +18,14 @@ class MainFragment : Fragment() {
 
     companion object {
         const val REQUEST_KEY = "request-get-confirm-result"
+        const val LOADING_VIEW = 0
+        const val CONTENT_VIEW = 1
     }
 
     private val viewModel by viewModel<MainViewModel>()
     private lateinit var binding: FragmentMainBinding
-    private val itemListingAdapter = ItemListingAdapter(OnItemClickListener())
+    private val itemListingAdapter =
+        ItemListingAdapter(OnItemClickListener(), OnCategoryClickListener())
 
     override fun onCreateView(
         inflater: LayoutInflater, parent: ViewGroup?,
@@ -54,15 +59,29 @@ class MainFragment : Fragment() {
         viewModel.itemListing.observe(viewLifecycleOwner) {
             itemListingAdapter.submitList(it)
         }
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.root.displayedChild = if (isLoading) LOADING_VIEW else CONTENT_VIEW
+        }
         viewModel.retrievedDataFailedEvent.observe(viewLifecycleOwner) {
             Log.d("LOL", it)
         }
+
     }
 
     inner class OnItemClickListener : OnItemListingClick {
         override fun onItemClick(data: ItemListingUiModel.ItemUiModel?) {
             data?.let {
                 ConfirmPickupDialogFragment(it).show(childFragmentManager, "")
+            }
+        }
+    }
+
+    inner class OnCategoryClickListener : OnCategoryClick {
+        override fun onCategoryClick(categoryType: String?) {
+            if (categoryType?.isNotBlank() == true) {
+                viewModel.getSortedListing(categoryType)
+            } else {
+                viewModel.getListing()
             }
         }
     }
