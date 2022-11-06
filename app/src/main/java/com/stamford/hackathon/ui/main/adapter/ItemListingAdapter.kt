@@ -9,10 +9,12 @@ import com.stamford.hackathon.core.model.ui.ItemListingType
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.databinding.ViewHolderHeaderBinding
 import com.stamford.hackathon.databinding.ViewHolderItemListingBinding
+import com.stamford.hackathon.ui.main.OnItemListingClick
 import com.stamford.hackathon.ui.main.viewholder.HeaderViewHolder
 import com.stamford.hackathon.ui.main.viewholder.ItemListingViewHolder
 
-class ItemListingAdapter : ListAdapter<ItemListingUiModel, ItemViewHolder<*>>(DiffCallBack()) {
+class ItemListingAdapter(private val onItemClickListener: OnItemListingClick) :
+    ListAdapter<ItemListingUiModel, ItemViewHolder<*>>(DiffCallBack()) {
 
     override fun getItemViewType(position: Int): Int = getItem(position).type
 
@@ -23,7 +25,7 @@ class ItemListingAdapter : ListAdapter<ItemListingUiModel, ItemViewHolder<*>>(Di
                     LayoutInflater.from(parent.context),
                     parent,
                     false
-                )
+                ), onItemClickListener
             )
             else -> HeaderViewHolder(
                 ViewHolderHeaderBinding.inflate(

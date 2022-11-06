@@ -11,6 +11,7 @@ object ItemToItemListingUiModelMapper : Mapper<Item, ItemListingUiModel.ItemUiMo
             data.title ?: "",
             data.description ?: "",
             data.expiredDate?.toString() ?: "",
+            ("฿" + data.price?.toString()),
             data.amount ?: 0,
             data.status ?: Const.STATUS_AVAILABLE,
             data.category ?: Const.CATEGORY_DIARIES
