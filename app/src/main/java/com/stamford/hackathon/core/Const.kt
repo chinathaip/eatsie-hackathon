@@ -3,14 +3,14 @@ package com.stamford.hackathon.core
 object Const {
 
     //item category
-    const val CATEGORY_VEGETABLE = 1
-    const val CATEGORY_MEAT = 2
-    const val CATEGORY_RICE_PASTA = 3
-    const val CATEGORY_FRUITS = 4
-    const val CATEGORY_DIARIES = 5
+    const val CATEGORY_VEGETABLE = "vegetables"
+    const val CATEGORY_MEAT = "meat"
+    const val CATEGORY_RICE_PASTA = "rice-pasta"
+    const val CATEGORY_FRUITS = "fruits"
+    const val CATEGORY_DIARIES = "diaries"
 
     //item status
-    const val STATUS_AVAILABLE = 777
-    const val STATUS_PENDING = 888
-    const val STATUS_DONE = 999
+    const val STATUS_AVAILABLE = "available"
+    const val STATUS_PENDING = "pending"
+    const val STATUS_COMPLETED = "completed"
 }

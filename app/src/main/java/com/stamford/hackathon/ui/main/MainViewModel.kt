@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.stamford.hackathon.core.model.server.Item
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.domain.GetFoodUseCase
 import com.stamford.hackathon.ui.main.mapper.ItemToItemListingUiModelMapper
@@ -31,6 +30,8 @@ class MainViewModel(private val getFoodUseCase: GetFoodUseCase) : ViewModel() {
                 val newItemListings = mutableListOf<ItemListingUiModel>()
                 val response = withContext(Dispatchers.IO) {
                     getFoodUseCase.invoke()
+                        .onSuccess { it?.items }
+                        .onFailure { throw it }
                 }
                 newItemListings.add(ItemListingUiModel.GroupHeader("Items from nearby restaurants"))
                 newItemListings.addAll(response.getOrNull()?.items?.map {

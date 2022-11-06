@@ -5,4 +5,8 @@
     <string name="alert_dialog_title">Do you confirm to go pick-up this item?</string>
     <string name="alert_dialog_yes">Yes</string>
     <string name="alert_dialog_no">No, take me back</string>
+    <string name="item_bought_date">Bought Date: %s</string>
+    <string name="item_expired_date">Expired Date: %s</string>
+    <string name="item_name_title">%s (%sg)</string>
+    <string name="item_quantity">Left: %s</string>
 </resources>
