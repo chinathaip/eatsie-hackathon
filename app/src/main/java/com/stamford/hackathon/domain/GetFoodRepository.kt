@@ -11,7 +11,7 @@ interface GetFoodRepository {
 
     suspend fun getListingByStatus(status: String?): Response<ItemListing?>
 
-    suspend fun confirmPickup(body: Map<String, String>): Response<Any?>
+    suspend fun confirmPickup(body: Map<String, String>?): Response<Any?>
 
     suspend fun login(body: Map<String, String>): Response<Any>
 }
