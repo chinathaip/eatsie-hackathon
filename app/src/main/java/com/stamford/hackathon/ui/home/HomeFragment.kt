@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.stamford.hackathon.core.model.ui.UserUiModel
 import com.stamford.hackathon.databinding.FragmentHomeBinding
 import com.stamford.hackathon.ui.main.MainActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
