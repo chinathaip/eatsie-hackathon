@@ -1,16 +1,13 @@
 package com.stamford.hackathon.domain
 
+import com.stamford.hackathon.core.BaseUseCase
 import com.stamford.hackathon.core.model.server.ItemListing
+import retrofit2.Response
 
-class GetListingByStatusUseCase(private val repository: GetFoodRepository) {
+class GetListingByStatusUseCase(private val repository: GetFoodRepository) :
+    BaseUseCase<String, ItemListing?>() {
 
-    suspend operator fun invoke(status: String): Result<ItemListing?> {
-        repository.getListingByStatus(status).let {
-            return if (it.isSuccessful) {
-                Result.success(it.body())
-            } else {
-                Result.failure(Exception(it.errorBody().toString()))
-            }
-        }
+    override suspend fun execute(parameter: String?): Response<ItemListing?> {
+        return repository.getListingByStatus(parameter)
     }
 }

@@ -40,7 +40,14 @@ class MainViewModel(
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    confirmPickupUseCase(buildRequestBody("listingId", itemId))
+                    confirmPickupUseCase(
+                        ClientPickupConfirmUseCase.Param(
+                            buildRequestBody(
+                                "listingId",
+                                itemId
+                            )
+                        )
+                    )
                         .onSuccess { it.toString() }
                         .onFailure { throw it }
                 }

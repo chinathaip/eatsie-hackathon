@@ -1,15 +1,15 @@
 package com.stamford.hackathon.domain
 
+import com.stamford.hackathon.core.BaseUseCase
+import retrofit2.Response
 
-class ClientPickupConfirmUseCase(private val repository: GetFoodRepository) {
 
-    suspend operator fun invoke(body: Map<String, String>): Result<Any?> {
-        repository.confirmPickup(body).let {
-            return if (it.isSuccessful) {
-                Result.success(it)
-            } else {
-                Result.failure(Exception(it.errorBody().toString()))
-            }
-        }
+class ClientPickupConfirmUseCase(private val repository: GetFoodRepository) :
+    BaseUseCase<ClientPickupConfirmUseCase.Param, Any?>() {
+
+    override suspend fun execute(parameter: Param?): Response<Any?> {
+        return repository.confirmPickup(parameter?.body)
     }
+
+    data class Param(val body: Map<String, String>)
 }

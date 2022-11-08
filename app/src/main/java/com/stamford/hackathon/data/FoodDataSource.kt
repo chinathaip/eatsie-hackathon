@@ -11,23 +11,23 @@ import retrofit2.http.QueryName
 interface FoodDataSource{
 
     @GET("listings")
-    suspend fun getListing() : Response<ItemListing>
+    suspend fun getListing() : Response<ItemListing?>
 
     @GET("listings/sorted")
     suspend fun getSortedListing(
         @Query("category")
-        type: String
-    ) : Response<ItemListing>
+        type: String?
+    ) : Response<ItemListing?>
 
     @GET("listings/get_status")
     suspend fun getListingByStatusUseCase(
         @Query("status")
-        status: String
-    ) : Response<ItemListing>
+        status: String?
+    ) : Response<ItemListing?>
 
     @PUT("listings/user_confirm")
     suspend fun confirmPickup(
         @Body
-        body: Map<String, String>
+        body: Map<String, String>?
     ) : Response<Any?>
 }
