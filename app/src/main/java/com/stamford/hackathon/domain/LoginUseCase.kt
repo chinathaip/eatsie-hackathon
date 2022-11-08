@@ -1,14 +1,15 @@
 package com.stamford.hackathon.domain
 
-class LoginUseCase(private val repository: GetFoodRepository) {
+import com.stamford.hackathon.core.BaseUseCase
+import com.stamford.hackathon.core.model.server.User
+import retrofit2.Response
 
-    suspend operator fun invoke(body: Map<String, String>): Result<Any?> {
-        repository.login(body).let {
-            return if (it.isSuccessful) {
-                Result.success(it.body())
-            } else {
-                Result.failure(Exception(it.errorBody().toString()))
-            }
-        }
+class LoginUseCase(private val repository: GetFoodRepository) :
+    BaseUseCase<LoginUseCase.Param, User?>() {
+
+    override suspend fun execute(parameter: Param?): Response<User?> {
+        return repository.login(parameter?.body)
     }
+
+    data class Param(val body: Map<String, String>)
 }

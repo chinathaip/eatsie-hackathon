@@ -1,6 +1,7 @@
 package com.stamford.hackathon.data
 
 import com.stamford.hackathon.core.model.server.ItemListing
+import com.stamford.hackathon.core.model.server.User
 import com.stamford.hackathon.domain.GetFoodRepository
 import retrofit2.Response
 
@@ -22,7 +23,7 @@ class GetFoodRepositoryImpl(private val dataSource: FoodDataSource) : GetFoodRep
         return dataSource.confirmPickup(body)
     }
 
-    override suspend fun login(body: Map<String, String>): Response<Any> {
+    override suspend fun login(body: Map<String, String>?): Response<User?> {
         return dataSource.login(body)
     }
 }
