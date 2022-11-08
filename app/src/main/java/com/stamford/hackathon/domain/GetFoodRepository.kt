@@ -5,11 +5,11 @@ import retrofit2.Response
 
 interface GetFoodRepository {
 
-    suspend fun getListing(): Response<ItemListing>
+    suspend fun getListing(): Response<ItemListing?>
 
-    suspend fun getSortedListing(type: String): Response<ItemListing>
+    suspend fun getSortedListing(type: String?): Response<ItemListing?>
 
-    suspend fun getListingByStatus(status: String): Response<ItemListing>
+    suspend fun getListingByStatus(status: String?): Response<ItemListing?>
 
-    suspend fun confirmPickup(body: Map<String, String>): Response<Any?>
+    suspend fun confirmPickup(body: Map<String, String>?): Response<Any?>
 }
