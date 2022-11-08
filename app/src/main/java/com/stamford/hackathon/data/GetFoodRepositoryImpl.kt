@@ -21,4 +21,8 @@ class GetFoodRepositoryImpl(private val dataSource: FoodDataSource) : GetFoodRep
     override suspend fun confirmPickup(body: Map<String, String>?): Response<Any?> {
         return dataSource.confirmPickup(body)
     }
+
+    override suspend fun login(body: Map<String, String>): Response<Any> {
+        return dataSource.login(body)
+    }
 }
