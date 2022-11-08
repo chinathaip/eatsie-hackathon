@@ -4,6 +4,7 @@ import com.stamford.hackathon.core.model.server.ItemListing
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Query
 import retrofit2.http.QueryName
@@ -30,4 +31,10 @@ interface FoodDataSource{
         @Body
         body: Map<String, String>?
     ) : Response<Any?>
+
+    @POST("users/login")
+    suspend fun login(
+        @Body
+        body: Map<String, String>
+    ) : Response<Any>
 }

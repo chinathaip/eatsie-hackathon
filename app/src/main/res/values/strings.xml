@@ -13,4 +13,6 @@
     <string name="item_quantity">Left: %s</string>
     <string name="profile_pending_order">Waiting for restaurant\'s confirmation</string>
     <string name="item_order_status">Status: %s</string>
+    <string name="home_login_title">READY TO GRAB CHEAP &amp; TASTY FOOD?</string>
+    <string name="home_login_subtitle">Login to your account</string>
 </resources>

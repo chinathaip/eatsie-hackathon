@@ -1,5 +1,7 @@
 package com.stamford.hackathon.ui.main
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -9,6 +11,12 @@ import com.stamford.hackathon.databinding.ActivityMainBinding
 import com.stamford.hackathon.ui.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        fun createIntent(context: Context) : Intent {
+            return Intent(context, MainActivity::class.java)
+        }
+    }
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
