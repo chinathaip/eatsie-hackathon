@@ -15,4 +15,5 @@
     <string name="item_order_status">Status: %s</string>
     <string name="home_login_title">READY TO GRAB CHEAP &amp; TASTY FOOD?</string>
     <string name="home_login_subtitle">Login to your account</string>
+    <string name="category_order_now">Order Now!</string>
 </resources>

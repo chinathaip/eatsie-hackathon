@@ -1,6 +1,8 @@
 package com.stamford.hackathon.ui.main.viewholder
 
 import android.util.Log
+import coil.api.load
+import com.stamford.hackathon.R
 import com.stamford.hackathon.core.ItemViewHolder
 import com.stamford.hackathon.core.OnCategoryClick
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
@@ -24,5 +26,6 @@ class CategoryViewHolder(
     override fun fillData(data: ItemListingUiModel.Category, position: Int) {
         categoryType = data.enum
         binding.categoryNameTextView.text = data.name
+        binding.categoryImageView.load(data.imageDrawable ?: R.drawable.all_category)
     }
 }
