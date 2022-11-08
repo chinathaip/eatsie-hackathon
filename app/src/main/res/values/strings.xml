@@ -2,4 +2,15 @@
     <string name="app_name">hackathon</string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
     <string name="not_on_board_yet_join_now">Not on board yet? <b><u><span style="color:#c04d4c">Join now</span></u></b></string>
+    <string name="welcome">Welcome, Khing</string>
+    <string name="confirm">Confirm</string>
+    <string name="alert_dialog_title">Do you confirm to go pick-up this item?</string>
+    <string name="alert_dialog_yes">Yes</string>
+    <string name="alert_dialog_no">No, take me back</string>
+    <string name="item_bought_date">Bought Date: %s</string>
+    <string name="item_expired_date">Expired Date: %s</string>
+    <string name="item_name_title">%s (%s%s)</string>
+    <string name="item_quantity">Left: %s</string>
+    <string name="profile_pending_order">Waiting for restaurant\'s confirmation</string>
+    <string name="item_order_status">Status: %s</string>
 </resources>

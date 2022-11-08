@@ -1,4 +1,4 @@
-package com.stamford.hackathon
+package com.stamford.hackathon.core
 
 import android.app.Application
 import com.stamford.hackathon.di.appModule
