@@ -18,5 +18,6 @@
     <color name="yellow">#EDDBC0</color>
     <color name="brown">#3C1D07</color>
 
+    <color name="bottom_sheet_bg">#efcfc8</color>
 
 </resources>
