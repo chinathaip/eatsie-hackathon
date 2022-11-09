@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/bottom_sheet_bg"/>
+    <solid android:color="@color/bottom_sheet_bg"
+        android:background="@android:color/transparent"/>
     <corners
         android:topLeftRadius="@dimen/space_24dp"
         android:topRightRadius="@dimen/space_24dp"
+        android:background="@android:color/transparent"
+        android:windowIsTranslucent="true"
         />
 
 </shape>

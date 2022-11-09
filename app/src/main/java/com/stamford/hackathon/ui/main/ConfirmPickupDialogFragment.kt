@@ -26,11 +26,14 @@ class ConfirmPickupDialogFragment(private val data: ItemListingUiModel.ItemUiMod
         savedInstanceState: Bundle?
     ): View {
         binding = BottomSheetDialogSelectItemBinding.inflate(LayoutInflater.from(context))
+        dialog?.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent);
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
+        dialog?.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent);
         binding.apply {
             confirmItemSelectionButton.setOnClickListener { showConfirmationDialog(data.itemId) }
             titleTextView.text = data.title
