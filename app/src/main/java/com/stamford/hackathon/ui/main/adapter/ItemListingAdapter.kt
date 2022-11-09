@@ -12,9 +12,11 @@ import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.databinding.ViewHolderCategoryContainerBinding
 import com.stamford.hackathon.databinding.ViewHolderHeaderBinding
 import com.stamford.hackathon.databinding.ViewHolderItemListingBinding
+import com.stamford.hackathon.databinding.ViewHolderLoadingBinding
 import com.stamford.hackathon.ui.main.viewholder.CategoryContainerViewHolder
 import com.stamford.hackathon.ui.main.viewholder.HeaderViewHolder
 import com.stamford.hackathon.ui.main.viewholder.ItemListingViewHolder
+import com.stamford.hackathon.ui.main.viewholder.LoadingViewHolder
 
 class ItemListingAdapter(
     private val onItemClickListener: OnItemListingClick,
@@ -38,6 +40,13 @@ class ItemListingAdapter(
                     LayoutInflater.from(parent.context),
                     parent, false
                 ), onCategoryClickListener
+            )
+            ItemListingType.TYPE_LOADING -> LoadingViewHolder(
+                ViewHolderLoadingBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
             else -> HeaderViewHolder(
                 ViewHolderHeaderBinding.inflate(

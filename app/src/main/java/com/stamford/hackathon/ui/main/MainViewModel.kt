@@ -1,9 +1,6 @@
 package com.stamford.hackathon.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.stamford.hackathon.core.Const
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.domain.ClientPickupConfirmUseCase
@@ -22,9 +19,6 @@ class MainViewModel(
 
     private val _itemListing = MutableLiveData<List<ItemListingUiModel>>()
     val itemListing: LiveData<List<ItemListingUiModel>> = _itemListing
-
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _confirmPickupSuccessEvent = MutableLiveData<Unit>()
     val confirmPickUpSuccessEvent: LiveData<Unit> = _confirmPickupSuccessEvent
@@ -61,23 +55,21 @@ class MainViewModel(
     fun getSortedListing(type: String) {
         viewModelScope.launch {
             try {
-                _itemListing.value = emptyList()
-                getCategory()
-                val newItemListings = _itemListing.value.orEmpty().toMutableList()
+                prepareItemListing()
+                val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
+                    remove(ItemListingUiModel.Loading)
+                }
                 val response = withContext(Dispatchers.IO) {
                     getSortedListingUseCase(type)
                         .onSuccess { it?.items }
                         .onFailure { throw it }
                 }
-                newItemListings.add(ItemListingUiModel.GroupHeader("Items from nearby restaurants"))
                 newItemListings.addAll(response.getOrNull()?.items?.mapNotNull {
                     ItemToItemListingUiModelMapper.map(it, Const.STATUS_AVAILABLE)
                 } ?: emptyList())
                 _itemListing.value = newItemListings
             } catch (exception: Exception) {
                 _retrievedDataFailedEvent.value = exception.message
-            } finally {
-                _isLoading.value = false
             }
         }
     }
@@ -85,15 +77,15 @@ class MainViewModel(
     fun getListing() {
         viewModelScope.launch {
             try {
-                _itemListing.value = emptyList()
-                getCategory()
-                val newItemListings = _itemListing.value.orEmpty().toMutableList()
+                prepareItemListing()
+                val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
+                    remove(ItemListingUiModel.Loading)
+                }
                 val response = withContext(Dispatchers.IO) {
                     getListingUseCase.invoke()
                         .onSuccess { it?.items }
                         .onFailure { throw it }
                 }
-                newItemListings.add(ItemListingUiModel.GroupHeader("Items from nearby restaurants"))
                 newItemListings.addAll(response.getOrNull()?.items?.mapNotNull {
                     ItemToItemListingUiModelMapper.map(it, Const.STATUS_AVAILABLE)
                 } ?: emptyList())
@@ -101,18 +93,18 @@ class MainViewModel(
                 _itemListing.value = newItemListings
             } catch (exception: Exception) {
                 _retrievedDataFailedEvent.value = exception.message
-            } finally {
-                _isLoading.value = false
             }
         }
     }
 
-    private fun getCategory() {
-        _isLoading.value = true
-        val newItemListings = _itemListing.value.orEmpty().toMutableList()
-        newItemListings.add(ItemListingUiModel.GroupHeader("Pick your category"))
-        newItemListings.addAll(listOf(ItemListingUiModel.createCategories()))
-        _itemListing.value = newItemListings
+    private fun prepareItemListing() {
+        _itemListing.value =
+            listOf(
+                ItemListingUiModel.GroupHeader("Pick your category"),
+                ItemListingUiModel.createCategories(),
+                ItemListingUiModel.GroupHeader("Items from nearby restaurants"),
+                ItemListingUiModel.Loading
+            )
     }
 
     private fun buildRequestBody(key: String, value: String): Map<String, String> {

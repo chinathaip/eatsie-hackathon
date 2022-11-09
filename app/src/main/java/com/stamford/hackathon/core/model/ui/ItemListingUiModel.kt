@@ -28,10 +28,13 @@ sealed class ItemListingUiModel(val type: Int) {
     data class ListOfCategory(val categories: List<Category>) :
         ItemListingUiModel(ItemListingType.TYPE_CATEGORY)
 
+    object Loading : ItemListingUiModel(ItemListingType.TYPE_LOADING)
+
     companion object {
         fun createCategories(): ListOfCategory {
             return ListOfCategory(
                 listOf(
+
                     Category("All", Const.CATEGORY_ALL, R.drawable.all_category),
                     Category("Meat", Const.CATEGORY_MEAT, R.drawable.meat_category),
                     Category("Dairies", Const.CATEGORY_DAIRIES, R.drawable.dairies_category),
