@@ -13,6 +13,7 @@
         android:layout_marginEnd="@dimen/space_8dp"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="8dp">
 
         <LinearLayout
@@ -28,8 +29,8 @@
                 android:scaleType="centerCrop" />
 
             <TextView
-                style="@style/BaseTheme.Header.14"
                 android:id="@+id/categoryNameTextView"
+                style="@style/BaseTheme.Header.14"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:paddingHorizontal="@dimen/space_8dp"

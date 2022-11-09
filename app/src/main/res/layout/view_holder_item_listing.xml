@@ -11,6 +11,7 @@
         android:layout_marginHorizontal="@dimen/space_16dp"
         android:layout_marginVertical="@dimen/space_4dp"
         android:elevation="@dimen/space_4dp"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/space_4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,8 +23,8 @@
                 android:id="@+id/itemImageView"
                 android:layout_width="150dp"
                 android:layout_height="120dp"
-                android:src="@drawable/ic_launcher_background"
                 android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
