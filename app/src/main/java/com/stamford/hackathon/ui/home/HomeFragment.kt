@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.loginSuccess.observe(viewLifecycleOwner) {
-            startActivity(MainActivity.createIntent(requireContext()))
+            startActivity(MainActivity.createIntent(requireContext(), it))
         }
         viewModel.loginFailed.observe(viewLifecycleOwner) { errorText ->
             Snackbar.make(binding.root, errorText, Snackbar.LENGTH_LONG).show()

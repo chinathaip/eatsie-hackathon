@@ -5,15 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stamford.hackathon.core.Const
+import com.stamford.hackathon.core.model.ui.UserUiModel
 import com.stamford.hackathon.domain.LoginUseCase
+import com.stamford.hackathon.ui.home.mapper.UserToUserUiModelMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
 
-    private val _loginSuccess = MutableLiveData<Unit>()
-    val loginSuccess: LiveData<Unit> = _loginSuccess
+    private val _loginSuccess = MutableLiveData<UserUiModel>()
+    val loginSuccess: LiveData<UserUiModel> = _loginSuccess
 
     private val _loginFailed = MutableLiveData<String>()
     val loginFailed: LiveData<String> = _loginFailed
@@ -33,11 +35,14 @@ class HomeViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                withContext(Dispatchers.IO) {
-                    loginUseCase(createLoginBody(userName, password))
+                val response = withContext(Dispatchers.IO) {
+                    loginUseCase(LoginUseCase.Param(createLoginBody(userName, password)))
+                        .onSuccess { it?.userinfo }
                         .onFailure { throw it }
                 }
-                _loginSuccess.value = Unit
+                response.getOrNull()?.userinfo?.let {
+                    _loginSuccess.value = UserToUserUiModelMapper.map(it)
+                }
             } catch (exception: Exception) {
                 _loginFailed.value = "invalid login credentials"
             } finally {

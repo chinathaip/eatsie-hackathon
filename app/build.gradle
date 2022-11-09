@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
+apply plugin: 'org.jetbrains.kotlin.android.extensions'
 
 android {
     namespace 'com.stamford.hackathon'
@@ -51,7 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    def koin_version= "3.2.2"
+    def koin_version = "3.2.2"
     def koin_android_version = "3.3.0"
 
     //koin - dependency injection
