@@ -23,8 +23,6 @@ class MainFragment : Fragment() {
     companion object {
         const val REQUEST_KEY = "request-get-confirm-result"
         const val RESULT_BUNDLE_KEY = "bundle-itemId"
-        const val LOADING_VIEW = 0
-        const val CONTENT_VIEW = 1
     }
 
     private val viewModel by viewModel<MainViewModel>()
