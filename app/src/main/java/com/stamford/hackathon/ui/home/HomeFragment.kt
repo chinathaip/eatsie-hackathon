@@ -32,10 +32,11 @@ class HomeFragment : Fragment() {
 
     private fun setupView() {
         binding.loginButton.setOnClickListener {
-            viewModel.handleLogin(
-                binding.usernameInput.text.toString(),
-                binding.passwordInput.text.toString()
-            )
+//            viewModel.handleLogin(
+//                binding.usernameInput.text.toString(),
+//                binding.passwordInput.text.toString()
+//            )
+            startActivity(MainActivity.createIntent(requireContext()))
         }
     }
 

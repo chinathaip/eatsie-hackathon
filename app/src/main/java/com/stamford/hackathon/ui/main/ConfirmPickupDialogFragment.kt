@@ -8,34 +8,37 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import coil.api.load
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.stamford.hackathon.R
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
-import com.stamford.hackathon.databinding.DialogFragmentConfirmPickupBinding
+import com.stamford.hackathon.databinding.BottomSheetDialogSelectItemBinding
 import com.stamford.hackathon.ui.main.MainFragment.Companion.REQUEST_KEY
 import com.stamford.hackathon.ui.main.MainFragment.Companion.RESULT_BUNDLE_KEY
 
 class ConfirmPickupDialogFragment(private val data: ItemListingUiModel.ItemUiModel) :
-    DialogFragment() {
+    BottomSheetDialogFragment() {
 
-    private lateinit var binding: DialogFragmentConfirmPickupBinding
+    private lateinit var binding : BottomSheetDialogSelectItemBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DialogFragmentConfirmPickupBinding.inflate(LayoutInflater.from(context))
+        binding = BottomSheetDialogSelectItemBinding.inflate(LayoutInflater.from(context))
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            confirmPickItemButton.setOnClickListener { showConfirmationDialog(data.itemId) }
-            confirmItemNameTextView.text = data.title
-            confirmItemDescriptionTextView.text = data.description
-            confirmItemPriceTextView.text = data.price
-            confirmItemStatusTextView.text = data.status
+            confirmItemSelectionButton.setOnClickListener { showConfirmationDialog(data.itemId) }
+            titleTextView.text = data.title
+            itemDescriptionTextView.text = data.description
+            itemPriceTextView.text = data.price
+            itemWeightTextView.text = data.weight
+            expDate.text = data.expiredTime
+            mfgDate.text = data.boughtTime
             confirmItemImageView.load(data.imageUrl) {
                 error(R.drawable.placeholder_image)
             }
