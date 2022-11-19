@@ -11,6 +11,7 @@ import com.stamford.hackathon.core.model.ui.UserUiModel
 import com.stamford.hackathon.databinding.ActivityMainBinding
 import com.stamford.hackathon.extension.whenNotBlank
 import com.stamford.hackathon.ui.profile.ProfileFragment
+import com.stamford.hackathon.ui.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.mainPage -> setFragment(MainFragment())
-                R.id.searchPage -> Unit // searchFragment
+                R.id.searchPage -> setFragment(SearchFragment())
                 R.id.profilePage -> setFragment(ProfileFragment().apply {
                     arguments = intent.extras
                 })

@@ -8,8 +8,10 @@ import com.stamford.hackathon.domain.GetListingUseCase
 import com.stamford.hackathon.domain.GetSortedListingUseCase
 import com.stamford.hackathon.ui.main.mapper.ItemToItemListingUiModelMapper
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class MainViewModel(
     private val getListingUseCase: GetListingUseCase,
@@ -49,6 +51,19 @@ class MainViewModel(
             } catch (exception: Exception) {
                 _retrievedDataFailedEvent.value = exception.message
             }
+        }
+    }
+
+    fun beginSearch(query: String): Flow<List<ItemListingUiModel.ItemUiModel>> {
+        val searchItems = emptyList<ItemListingUiModel.ItemUiModel>().toMutableList()
+        return flow {
+            _itemListing.value.orEmpty().filterIsInstance<ItemListingUiModel.ItemUiModel>()
+                .forEach { item ->
+                    if (item.title.lowercase().contains(query)) {
+                        searchItems.add(item)
+                        emit(searchItems)
+                    }
+                }
         }
     }
 

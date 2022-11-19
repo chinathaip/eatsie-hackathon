@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
 import com.google.android.material.snackbar.Snackbar
-import com.stamford.hackathon.R
 import com.stamford.hackathon.core.OnCategoryClick
 import com.stamford.hackathon.core.OnItemListingClick
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
