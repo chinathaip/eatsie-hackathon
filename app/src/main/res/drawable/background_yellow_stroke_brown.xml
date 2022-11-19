@@ -4,4 +4,6 @@
         android:width="3dp"
         android:color="@color/brown" />
     <solid android:color="@color/yellow" />
+    <corners
+        android:radius="@dimen/space_32dp"/>
 </shape>
