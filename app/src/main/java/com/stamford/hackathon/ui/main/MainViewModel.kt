@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+private const val THREE_SECONDS = 3000L
+
 class MainViewModel(
     private val getListingUseCase: GetListingUseCase,
     private val getSortedListingUseCase: GetSortedListingUseCase,
@@ -28,7 +30,6 @@ class MainViewModel(
     private val _retrievedDataFailedEvent = MutableLiveData<String>()
     val retrievedDataFailedEvent: LiveData<String> = _retrievedDataFailedEvent
 
-    private val twoSecond = 5000L
     init {
         getListing()
     }
@@ -72,7 +73,7 @@ class MainViewModel(
         viewModelScope.launch {
             try {
                 prepareItemListing()
-                delay(twoSecond)
+                delay(THREE_SECONDS)
                 val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
                     remove(ItemListingUiModel.Loading)
                 }
@@ -95,7 +96,7 @@ class MainViewModel(
         viewModelScope.launch {
             try {
                 prepareItemListing()
-                delay(twoSecond)
+                delay(THREE_SECONDS)
                 val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
                     remove(ItemListingUiModel.Loading)
                 }
