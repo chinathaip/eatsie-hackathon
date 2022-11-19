@@ -15,6 +15,7 @@ import com.stamford.hackathon.core.OnItemListingClick
 import com.stamford.hackathon.core.model.ui.ItemListingUiModel
 import com.stamford.hackathon.databinding.FragmentMainBinding
 import com.stamford.hackathon.ui.main.adapter.ItemListingAdapter
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
@@ -22,8 +23,6 @@ class MainFragment : Fragment() {
     companion object {
         const val REQUEST_KEY = "request-get-confirm-result"
         const val RESULT_BUNDLE_KEY = "bundle-itemId"
-        const val LOADING_VIEW = 0
-        const val CONTENT_VIEW = 1
     }
 
     private val viewModel by viewModel<MainViewModel>()
@@ -65,9 +64,6 @@ class MainFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.itemListing.observe(viewLifecycleOwner) {
             itemListingAdapter.submitList(it)
-        }
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            binding.root.displayedChild = if (isLoading) LOADING_VIEW else CONTENT_VIEW
         }
         viewModel.confirmPickUpSuccessEvent.observe(viewLifecycleOwner) {
             Snackbar.make(

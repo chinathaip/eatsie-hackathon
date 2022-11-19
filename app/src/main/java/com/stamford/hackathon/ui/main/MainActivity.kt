@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val user by lazy { intent.extras?.getParcelable(EXTRA_USER) as? UserUiModel }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +36,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        user?.username?.whenNotBlank { userName ->
-            binding.toolbar.greetingTextView.text = getString(R.string.welcome, userName)
-        }
-
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.mainPage -> setFragment(MainFragment())

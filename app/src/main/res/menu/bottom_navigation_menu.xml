@@ -6,19 +6,19 @@
             android:id="@+id/mainPage"
             android:enabled="true"
             android:icon="@drawable/icon_bottomnav_main"
-            android:title="" />
+            android:title="Main" />
 
         <item
             android:id="@+id/searchPage"
             android:enabled="false"
             android:icon="@drawable/icon_bottomnav_search"
-            android:title="" />
+            android:title="Search" />
 
         <item
             android:id="@+id/profilePage"
             android:enabled="true"
             android:icon="@drawable/icon_bottomnav_user"
-            android:title="" />
+            android:title="Me" />
 
     </group>
 </menu>
