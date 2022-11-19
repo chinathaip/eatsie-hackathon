@@ -8,10 +8,12 @@ import com.stamford.hackathon.domain.GetListingUseCase
 import com.stamford.hackathon.domain.GetSortedListingUseCase
 import com.stamford.hackathon.ui.main.mapper.ItemToItemListingUiModelMapper
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
+
+private const val THREE_SECONDS = 3000L
 
 class MainViewModel(
     private val getListingUseCase: GetListingUseCase,
@@ -71,6 +73,7 @@ class MainViewModel(
         viewModelScope.launch {
             try {
                 prepareItemListing()
+                delay(THREE_SECONDS)
                 val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
                     remove(ItemListingUiModel.Loading)
                 }
@@ -93,6 +96,7 @@ class MainViewModel(
         viewModelScope.launch {
             try {
                 prepareItemListing()
+                delay(THREE_SECONDS)
                 val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
                     remove(ItemListingUiModel.Loading)
                 }
