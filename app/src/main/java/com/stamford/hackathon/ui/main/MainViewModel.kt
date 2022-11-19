@@ -8,10 +8,10 @@ import com.stamford.hackathon.domain.GetListingUseCase
 import com.stamford.hackathon.domain.GetSortedListingUseCase
 import com.stamford.hackathon.ui.main.mapper.ItemToItemListingUiModelMapper
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 
 class MainViewModel(
     private val getListingUseCase: GetListingUseCase,
@@ -28,6 +28,7 @@ class MainViewModel(
     private val _retrievedDataFailedEvent = MutableLiveData<String>()
     val retrievedDataFailedEvent: LiveData<String> = _retrievedDataFailedEvent
 
+    private val twoSecond = 5000L
     init {
         getListing()
     }
@@ -71,6 +72,7 @@ class MainViewModel(
         viewModelScope.launch {
             try {
                 prepareItemListing()
+                delay(twoSecond)
                 val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
                     remove(ItemListingUiModel.Loading)
                 }
@@ -93,6 +95,7 @@ class MainViewModel(
         viewModelScope.launch {
             try {
                 prepareItemListing()
+                delay(twoSecond)
                 val newItemListings = _itemListing.value.orEmpty().toMutableList().apply {
                     remove(ItemListingUiModel.Loading)
                 }
