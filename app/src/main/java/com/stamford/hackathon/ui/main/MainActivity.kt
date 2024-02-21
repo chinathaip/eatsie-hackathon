@@ -1,23 +1,58 @@
 package com.stamford.hackathon.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.stamford.hackathon.R
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.stamford.hackathon.core.model.ui.UserUiModel
+import com.stamford.hackathon.databinding.ActivityMainBinding
+import com.stamford.hackathon.extension.whenNotBlank
+import com.stamford.hackathon.ui.profile.ProfileFragment
+import com.stamford.hackathon.ui.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by viewModel<MainViewModel>()
+    companion object {
+        const val EXTRA_USER = "extra-user"
+
+        fun createIntent(context: Context, user: UserUiModel): Intent {
+            return Intent(context, MainActivity::class.java).apply {
+                putExtra(EXTRA_USER, user)
+            }
+        }
+    }
+
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+        if (savedInstanceState == null) {
+            setFragment(MainFragment())
+        }
+        setupView()
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.food.observe(this) {
-            println(it)
+    private fun setupView() {
+        binding.bottomNavigation.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.mainPage -> setFragment(MainFragment())
+                R.id.searchPage -> setFragment(SearchFragment())
+                R.id.profilePage -> setFragment(ProfileFragment().apply {
+                    arguments = intent.extras
+                })
+            }
+            return@setOnItemSelectedListener true
         }
     }
+
+    private fun setFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            replace(binding.fragmentContainerView.id, fragment)
+        }
+    }
+
 }

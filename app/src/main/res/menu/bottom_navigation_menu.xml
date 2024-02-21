@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/mainPage"
+            android:enabled="true"
+            android:icon="@drawable/icon_bottomnav_main"
+            android:title="Main" />
+
+        <item
+            android:id="@+id/searchPage"
+            android:enabled="true"
+            android:icon="@drawable/icon_bottomnav_search"
+            android:title="Search" />
+
+        <item
+            android:id="@+id/profilePage"
+            android:enabled="true"
+            android:icon="@drawable/icon_bottomnav_user"
+            android:title="Me" />
+
+    </group>
+</menu>
